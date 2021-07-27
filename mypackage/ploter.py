@@ -82,7 +82,33 @@ def save_model_performances(X,Y, model,file_name='performance_training',title='P
 						name='predictions'))
     fig.update_layout(title=title)
     fig.write_image("%s.png"%file_name)
+	
+def get_metrics(X_train,Y_train,X_test,Y_test, model):
+    """
+	####################################################################################
+	#
+	#  Plot Model predictions vs. target and print MSE and R2
+    #  Inputs : X (features), Y (target), model (sci-kit learn model), show (Boolean)
+	#
+	####################################################################################
+	"""
+    #model.fit(X, Y)
+    predictions_train = model.predict(X_train)
+    predictions_test = model.predict(X_test)   
+    # ######## Computes MSE #######    
+    MSE_train = mean_squared_error(Y_train, predictions_train)
+    MSE_test = mean_squared_error(Y_test, X_test)
+    
+    # ######## Computes R2 ####### 
+    R2_train = r2_score(Y_train, predictions_train)
+    R2_test = r2_score(Y_test, X_test)
 
+    with open("metrics.txt", 'w') as outfile:
+        outfile.write("############# Model #############\n\t%s" % str(model))
+        outfile.write("Training MSE: %2.1f%%\n" % R2_train)
+        outfile.write("Test MSE: %2.1f%%\n" % MSE_test)
+        outfile.write("Training R2: %2.1f%%\n" % test_score)
+        outfile.write("Test R2: %2.1f%%\n" % R2_test)
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):
   from sklearn.metrics import mean_squared_error
@@ -126,3 +152,16 @@ def show_cloud(data,val= 'error_mean'):
     plt.figure(figsize=(15,8))
     plt.imshow(wordcloud)
 
+def save_cloud(data,val= 'error_mean',title='Error Analysis',file_name='error_analysis'):
+    E = data[['commune',val]]
+    D = E.set_index('commune').T.to_dict('list')
+    for k,v in D.items():
+        D[k]=v[0]
+    
+    
+    
+    wordcloud = WordCloud(max_words  = 500, width = 1000, height = 500).generate_from_frequencies(D)
+    
+    plt.figure(figsize=(15,8))
+    plt.imshow(wordcloud)
+    plt.savefig('%s.png'%file_name)

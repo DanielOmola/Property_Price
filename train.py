@@ -54,7 +54,12 @@ years = [2020,2019,2018,2017]
 #departements = ['75','92','93','94','77','78','91','95'] 
 departements = ['75','92','93','94','95']
 
+with open("data_info.txt", 'w') as outfile:
+    outfile.write("############# Data Info #############\n\t%s" % str(model))
+    outfile.write("Locations: %s" % str(departements))
+    outfile.write("Periods: %s" % str(years))
 
+	
 data = dl.get_market_data(years = years,departements=departements,top_cities=None)
 
 # ////////////  1.2 - Features engineering with special encoding
@@ -116,12 +121,13 @@ model = model_selection(models,X_train[features_augmented],y_train)
 model.fit(X_train[features_augmented],y_train)
 
 # ////////////  3.5 - Best Model save
-dump(model, open('model.pkl', 'wb'))
+#dump(model, open('model.pkl', 'wb'))
 
-
+	
+		
 ploter.save_model_performances(X_train[features_augmented],y_train, model,file_name='performance_training',title='Performance on Training data')
 ploter.save_model_performances(X_test[features_augmented],y_test, model,file_name='performance_test',title='Performance on Test data')
-
+ploter.get_metrics(X_train[features_augmented],Y_train,X_test[features_augmented],Y_test, model)
 
 ####################################
 # 		4 - Feature importance
@@ -130,7 +136,7 @@ try :
     feat_importances = pd.Series(model.feature_importances_, index=features_augmented)
 except :    
     feat_importances = pd.Series(model.coef_, index=features_augmented)
-feat_importances.plot(kind='barh')
+feat_importances.plot(kind='barh',title='Feature Importance').get_figure().savefig("feature_importance.png")
 
 
 
@@ -165,17 +171,21 @@ errors_city['inv_std_error']=errors_city['std_error'].apply(lambda v : 1/v)
 
 # ////////////  4.2 - City with high mean errors
 errors_city[['commune','error_mean']].tail(10)
-ploter.show_cloud(errors_city)
+#ploter.show_cloud(errors_city)
+ploter.save_cloud(errors_city,val= 'error_mean',title='City with high mean errors',file_name='high_mean_errors')
 
 # ////////////  4.3 - City with low mean errors
 errors_city[['commune','error_mean']].head(0)
-ploter.show_cloud(errors_city,'inv_error_mean')
+#ploter.show_cloud(errors_city,'inv_error_mean')
+ploter.save_cloud(errors_city,val= 'inv_error_mean',title='City with low mean errors',file_name='low_mean_errors')
 
 # ////////////  4.3 - City with low mean errors
-ploter.show_cloud(errors_city.dropna(),'std_error')
+#ploter.show_cloud(errors_city.dropna(),'std_error')
 
 # ////////////  4.3 - City with high std errors
-ploter.show_cloud(errors_city.dropna(),'std_error')
+#ploter.show_cloud(errors_city.dropna(),'std_error')
+ploter.save_cloud(errors_city,val= 'std_error',title='City with high std errors',file_name='high_std_errors')
 
 # ////////////  4.3 - City with low std errors
-ploter.show_cloud(errors_city.dropna(),'inv_std_error')
+#ploter.show_cloud(errors_city.dropna(),'inv_std_error')
+ploter.save_cloud(errors_city,val= 'inv_std_error',title='City with low std errors',file_name='low_std_errors')
