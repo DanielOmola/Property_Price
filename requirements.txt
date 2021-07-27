@@ -1,0 +1,9 @@
+pandas
+numpy==1.19
+sklearn
+plotly
+setuptools
+seaborn
+matplotlib
+wordcloud
+mypackage
