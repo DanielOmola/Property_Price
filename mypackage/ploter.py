@@ -105,10 +105,10 @@ def get_metrics(X_train,Y_train,X_test,Y_test, model):
 
     with open("metrics.txt", 'w') as outfile:
         outfile.write("\n########################## Model ##########################\n\t%s" % str(model))
-        outfile.write("\nTraining MSE: %2.3f%%" % MSE_train)
-        outfile.write("\nTest MSE: %2.1f%%" % MSE_test)
-        outfile.write("\nTraining R2: %2.3f%%" % R2_train)
-        outfile.write("\nTest R2: %2.1f%%" % R2_test)
+        outfile.write("\nTraining MSE: %2.4f%%" % MSE_train)
+        outfile.write("\nTest MSE: %2.4f%%" % MSE_test)
+        outfile.write("\nTraining R2: %2.4f%%" % R2_train)
+        outfile.write("\nTest R2: %2.4f%%" % R2_test)
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):
   from sklearn.metrics import mean_squared_error

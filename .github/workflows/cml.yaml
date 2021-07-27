@@ -23,10 +23,10 @@ jobs:
           cml-publish feature_importance.png --md >> report.md
           echo "high_mean_errors" >> report.md
           cml-publish high_mean_errors.png --md >> report.md
-          echo "low_mean_errors" >> report.md
-          cml-publish low_mean_errors.png --md >> report.md
           echo "high_std_errors" >> report.md
           cml-publish high_std_errors.png --md >> report.md
+          echo "low_mean_errors" >> report.md
+          cml-publish low_mean_errors.png --md >> report.md
           echo "low_std_errors" >> report.md
           cml-publish low_std_errors.png --md >> report.md
           
