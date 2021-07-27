@@ -55,7 +55,7 @@ years = [2020,2019,2018,2017]
 departements = ['75','92','93','94','95']
 
 with open("data_info.txt", 'w') as outfile:
-    outfile.write("############# Data Info #############\n\t%s" % str(model))
+    outfile.write("############# Data Info #############\n")
     outfile.write("Locations: %s" % str(departements))
     outfile.write("Periods: %s" % str(years))
 
@@ -127,7 +127,7 @@ model.fit(X_train[features_augmented],y_train)
 		
 ploter.save_model_performances(X_train[features_augmented],y_train, model,file_name='performance_training',title='Performance on Training data')
 ploter.save_model_performances(X_test[features_augmented],y_test, model,file_name='performance_test',title='Performance on Test data')
-ploter.get_metrics(X_train[features_augmented],Y_train,X_test[features_augmented],Y_test, model)
+ploter.get_metrics(X_train[features_augmented],y_train,X_test[features_augmented],y_test, model)
 
 ####################################
 # 		4 - Feature importance
