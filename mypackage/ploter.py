@@ -70,24 +70,20 @@ def save_model_performances(X,Y, model,file_name='performance_training',title='P
     # ######## Computes R2 ####### 
     R2 = r2_score(Y, predictions)
     print(f'R2 : {R2}')
-	title="%s MSE: %f, R2: %f"%(title,MSE,R2)
-    
+    title="%s MSE: %f, R2: %f"%(title,MSE,R2)
     # ######## Plot Model predictions vs. target #######     
     #if show:
-	fig = go.Figure()
-
-	fig.add_trace(go.Scatter(y=Y,
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(y=Y,
 						mode='lines',
 						name='target'))
-	fig.add_trace(go.Scatter(y=predictions
+    fig.add_trace(go.Scatter(y=predictions
 							,
 						mode='lines',
 						name='predictions'))
-	fig.update_layout(
+    fig.update_layout(
 	title=title)
-
-
-	fig.write_image("%s.png"%file_name)
+    fig.write_image("%s.png"%file_name)
 
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):
