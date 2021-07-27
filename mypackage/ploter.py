@@ -105,9 +105,9 @@ def get_metrics(X_train,Y_train,X_test,Y_test, model):
 
     with open("metrics.txt", 'w') as outfile:
         outfile.write("############# Model #############\n\t%s" % str(model))
-        outfile.write("Training MSE: %2.1f%%\n" % R2_train)
+        outfile.write("Training MSE: %2.1f%%\n" % MSE_train)
         outfile.write("Test MSE: %2.1f%%\n" % MSE_test)
-        outfile.write("Training R2: %2.1f%%\n" % test_score)
+        outfile.write("Training R2: %2.1f%%\n" % R2_train)
         outfile.write("Test R2: %2.1f%%\n" % R2_test)
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):
