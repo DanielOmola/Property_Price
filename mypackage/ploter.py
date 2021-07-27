@@ -49,7 +49,7 @@ def check_model_performances(X,Y, model,show=False):
     
         fig.show()
 
-def save_model_performances(X,Y, model,file_name='performance_training",title='Performance on training data'):
+def save_model_performances(X,Y, model,file_name='performance_training',title='Performance on training data'):
     """
 	####################################################################################
 	#
