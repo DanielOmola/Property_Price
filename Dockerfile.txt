@@ -1,0 +1,28 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y python3\
+	python3-pip
+
+
+RUN pip3 install jupyter
+RUN pip3 install pandas
+RUN pip3 install numpy==1.19
+RUN pip3 install sklearn
+RUN pip3 install plotly
+RUN pip3 install setuptools
+RUN pip3 install seaborn
+RUN pip3 install matplotlib
+RUN pip3 install wordcloud 
+RUN useradd -ms /bin/bash jupyter
+RUN pip3 install mypackage
+
+USER jupyter
+
+WORKDIR /home/jupyter
+COPY . .
+
+#RUN pip3 install mypackage
+
+EXPOSE 8888
+ENTRYPOINT ["jupyter","notebook","--ip=*"]
+
