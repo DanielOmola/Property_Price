@@ -55,7 +55,7 @@ years = [2020,2019,2018,2017]
 departements = ['75','92','93','94','95']
 
 with open("data_info.txt", 'w') as outfile:
-    outfile.write("############# Data Info #############\n\t%s" % str(model))
+    outfile.write("############# Data Info #############\n")
     outfile.write("Locations: %s" % str(departements))
     outfile.write("Periods: %s" % str(years))
 
