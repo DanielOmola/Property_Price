@@ -49,7 +49,45 @@ def check_model_performances(X,Y, model,show=False):
     
         fig.show()
 
+def save_model_performances(X,Y, model,file_name='performance_training",title='Performance on training data'):
+    """
+	####################################################################################
+	#
+	#  Plot Model predictions vs. target and print MSE and R2
+    #  Inputs : X (features), Y (target), model (sci-kit learn model), show (Boolean)
+	#
+	####################################################################################
+	"""
+    #model.fit(X, Y)
+    predictions = model.predict(X)
+    
+    predictions = predictions#.reshape(-1,1)
+    
+    # ######## Computes MSE #######    
+    MSE = mean_squared_error(Y, predictions)
+    print(f'\nMSE : {MSE}')
+    
+    # ######## Computes R2 ####### 
+    R2 = r2_score(Y, predictions)
+    print(f'R2 : {R2}')
+	title="%s MSE: %f, R2: %f"%(title,MSE,R2)
+    
+    # ######## Plot Model predictions vs. target #######     
+    #if show:
+	fig = go.Figure()
 
+	fig.add_trace(go.Scatter(y=Y,
+						mode='lines',
+						name='target'))
+	fig.add_trace(go.Scatter(y=predictions
+							,
+						mode='lines',
+						name='predictions'))
+	fig.update_layout(
+	title=title)
+
+
+	fig.write_image("%s.png"%file_name)
 
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):

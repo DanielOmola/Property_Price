@@ -119,6 +119,10 @@ model.fit(X_train[features_augmented],y_train)
 dump(model, open('model.pkl', 'wb'))
 
 
+ploter.save_model_performances(X_train[features_augmented],y_train, model,file_name='performance_training',title='Performance on Training data')
+ploter.save_model_performances(X_trest[features_augmented],y_test, model,file_name='performance_test',title='Performance on Test data')
+
+
 ####################################
 # 		4 - Feature importance
 ####################################

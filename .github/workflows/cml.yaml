@@ -16,5 +16,6 @@ jobs:
           python train.py
 
           #cat metrics.txt >> report.md
-          #cml-publish confusion_matrix.png --md >> report.md
-          #cml-send-comment report.md
+          cml-publish performance_training.png --md >> report.md
+          cml-publish performance_test.png --md >> report.md
+          cml-send-comment report.md
