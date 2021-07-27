@@ -15,7 +15,7 @@ jobs:
           #pip install -r requirements.txt
           python train.py
 
-          #cat metrics.txt >> report.md
+          ##cat metrics.txt >> report.md
           cml-publish performance_training.png --md >> report.md
           cml-publish performance_test.png --md >> report.md
           cml-send-comment report.md
