@@ -77,12 +77,10 @@ def save_model_performances(X,Y, model,file_name='performance_training',title='P
     fig.add_trace(go.Scatter(y=Y,
 						mode='lines',
 						name='target'))
-    fig.add_trace(go.Scatter(y=predictions
-							,
+    fig.add_trace(go.Scatter(y=predictions,
 						mode='lines',
 						name='predictions'))
-    fig.update_layout(
-	title=title)
+    fig.update_layout(title=title)
     fig.write_image("%s.png"%file_name)
 
 # ////////////////////////////////////////////////////////////////////
