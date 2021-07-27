@@ -97,11 +97,11 @@ def get_metrics(X_train,Y_train,X_test,Y_test, model):
     predictions_test = model.predict(X_test)   
     # ######## Computes MSE #######    
     MSE_train = mean_squared_error(Y_train, predictions_train)
-    MSE_test = mean_squared_error(Y_test, X_test)
+    MSE_test = mean_squared_error(Y_test, predictions_test)
     
     # ######## Computes R2 ####### 
     R2_train = r2_score(Y_train, predictions_train)
-    R2_test = r2_score(Y_test, X_test)
+    R2_test = r2_score(Y_test, predictions_test)
 
     with open("metrics.txt", 'w') as outfile:
         outfile.write("############# Model #############\n\t%s" % str(model))
