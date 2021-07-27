@@ -9,6 +9,32 @@ from mypackage import ploter
 from mypackage import data_processor as dp
 from mypackage import mydataloader as dl
 import os
+
+
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestRegressor
+from sklearn import linear_model
+from sklearn import svm
+from sklearn import neighbors
+from sklearn.neural_network import MLPRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import TimeSeriesSplit
+tscv = TimeSeriesSplit(n_splits=5)
+print(tscv)
+from sklearn.model_selection import cross_val_score
+from sklearn.feature_selection import RFE
+from sklearn.model_selection import train_test_split
+import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
+from pickle import dump
+import platform
+
+
+
 ####################################
 # 		1 - Data Preparation
 ####################################
@@ -61,6 +87,15 @@ def model_selection(models,X,y,verbose=True):
 ####################################
 
 # ////////////  3.1 - Model preparation
+
+ols = linear_model.LinearRegression()
+ridge = linear_model.Ridge(alpha=.1)
+lasso = linear_model.Lasso(alpha=0.1)
+bayesian_ridge = linear_model.BayesianRidge()
+svr = svm.SVR() # >== scale very badly
+rf = RandomForestRegressor(max_depth=10,min_samples_leaf=10, random_state=0)
+gbreg = GradientBoostingRegressor()
+
 	
 models = {'OLS regression' : ols,
           'Ridge regression' : ridge,
