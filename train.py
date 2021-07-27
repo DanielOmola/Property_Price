@@ -45,14 +45,14 @@ import platform
 
 #years = [2020,2019,2018,2017,2016,2015,2014]
 #years = [2020]
-years = [2020,2019,2018,2017]
+years = [2020,2019,2018,2017,2016]
 
 
 # --------- Chose the area with departement code
 
 #departements = ['75'] 
 #departements = ['75','92','93','94','77','78','91','95'] 
-departements = ['75','92','93','94','95']
+departements = ['75','92','93','94']
 
 with open("data_info.txt", 'w') as outfile:
     outfile.write("########################## Data Info ##########################\n")
