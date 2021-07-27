@@ -154,6 +154,7 @@ def show_cloud(data,val= 'error_mean'):
 
 def save_cloud(data,val= 'error_mean',title='Error Analysis',file_name='error_analysis'):
     E = data[['commune',val]]
+    E.dropna(inplace=True)
     D = E.set_index('commune').T.to_dict('list')
     for k,v in D.items():
         D[k]=v[0]
