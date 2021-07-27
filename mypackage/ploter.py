@@ -104,11 +104,11 @@ def get_metrics(X_train,Y_train,X_test,Y_test, model):
     R2_test = r2_score(Y_test, predictions_test)
 
     with open("metrics.txt", 'w') as outfile:
-        outfile.write("############# Model #############\n\t%s" % str(model))
-        outfile.write("Training MSE: %2.1f%%\n" % MSE_train)
-        outfile.write("Test MSE: %2.1f%%\n" % MSE_test)
-        outfile.write("Training R2: %2.1f%%\n" % R2_train)
-        outfile.write("Test R2: %2.1f%%\n" % R2_test)
+        outfile.write("\n########################## Model ##########################\n\t%s" % str(model))
+        outfile.write("\nTraining MSE: %2.3f%%" % MSE_train)
+        outfile.write("\nTest MSE: %2.1f%%" % MSE_test)
+        outfile.write("\nTraining R2: %2.3f%%" % R2_train)
+        outfile.write("\nTest R2: %2.1f%%" % R2_test)
 # ////////////////////////////////////////////////////////////////////
 def compar_prediction_target(predictions,Y,show=False):
   from sklearn.metrics import mean_squared_error
@@ -154,6 +154,7 @@ def show_cloud(data,val= 'error_mean'):
 
 def save_cloud(data,val= 'error_mean',title='Error Analysis',file_name='error_analysis'):
     E = data[['commune',val]]
+	E.dropna(inplace=True)
     D = E.set_index('commune').T.to_dict('list')
     for k,v in D.items():
         D[k]=v[0]
